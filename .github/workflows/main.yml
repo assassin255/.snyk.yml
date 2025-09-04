@@ -1,0 +1,33 @@
+name: Windows RDP with Pinggy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  windows-rdp:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable RDP + Firewall
+        shell: powershell
+        run: |
+          # Bật RDP
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+
+      - name: Download Pinggy
+        run: |
+          curl -s -o pinggy.exe https://get.pinggy.io
+
+      - name: Run Pinggy Tunnel
+        shell: bash
+        run: |
+          ./pinggy.exe ssh -p 443 -R0:localhost:3389 -o StrictHostKeyChecking=no -o ServerAliveInterval=30 lVuaQjAzw82+tcp@free.pinggy.io &
+
+      - name: Keep Alive
+        run: |
+          echo "RDP đang chạy qua Pinggy..."
+          ping -t 127.0.0.1 > NUL
