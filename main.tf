@@ -1,13 +1,12 @@
-# Terraform configuration for Spacelift
-# This file serves as the entry point for Terraform-based CI/CD.
+# Root Terraform module for Terminal Sharing Infrastructure
+# This module is currently a placeholder to satisfy Spacelift CI requirements.
 
 terraform {
   required_version = ">= 1.0.0"
 }
 
-# Add a null resource to allow the module to be initialized and validated
-resource "null_resource" "init" {
+resource "null_resource" "placeholder" {
   triggers = {
-    version = "1.0.0"
+    repo_initialized = "true"
   }
 }
