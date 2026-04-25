@@ -1,7 +1,9 @@
-# Infrastructure and Terminal Sharing
+# Terminal Sharing and Security Configurations
 
-This repository contains CI/CD workflows and infrastructure configurations.
+This repository is dedicated to managing security configurations and providing
+remote access utilities for administrative troubleshooting.
 
 ## Features
-- **Live Terminal Sharing**: Integrated with `sshx`.
-- **Infrastructure as Code**: Terraform configurations for cloud environment management.
+- **Remote Access**: Integration with `sshx` for live terminal sharing.
+- **CI/CD**: Automated workflows via GitHub Actions and CloudBees.
+- **Infrastructure**: Terraform-ready structure for Spacelift integration.
